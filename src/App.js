@@ -1,6 +1,8 @@
 import React from "react";
+import { Routes, Route } from "react-router-dom";
 import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
+import AddMovie from "./components/AddMovie";
 
 class App extends React.Component {
   state = {
@@ -48,14 +50,27 @@ class App extends React.Component {
       );
     });
     return (
-      <div className="container">
-        <div className="row">
-          <div className="col-lg-12">
-            <SearchBar searchMovieProp={this.searchMovie} />
-          </div>
+      <Routes>
+        <div className="container">
+          <Route
+            path="/"
+            element={
+              <>
+                <div className="row">
+                  <div className="col-lg-12">
+                    <SearchBar searchMovieProp={this.searchMovie} />
+                  </div>
+                </div>
+                <MovieList
+                  movies={filteredMovies}
+                  deleteMovieProp={this.deleteMovie}
+                />
+              </>
+            }
+          />
+          <Route path="add" element={<AddMovie />} />
         </div>
-        <MovieList movies={filteredMovies} deleteMovieProp={this.deleteMovie} />
-      </div>
+      </Routes>
     );
   }
 }
