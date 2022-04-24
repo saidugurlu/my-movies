@@ -2,6 +2,8 @@ import React from "react";
 import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import AddMovie from "./components/AddMovie";
+import axios from 'axios';
+
 
 class App extends React.Component {
   state = {
@@ -11,11 +13,13 @@ class App extends React.Component {
   };
 
   async componentDidMount() {
-    const baseUrl = "http://localhost:3002/movies";
-    const response = await fetch(baseUrl);
-    const data = await response.json();
-    this.setState({ movies: data });
-  }
+    const response = await axios.get("http://localhost:3002/movies");
+    this.setState({ movies: response.data })
+}
+
+/*  getMovies() {
+  
+} */
 
   // deleteMovie = (movie) => {
   //   const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
@@ -24,21 +28,36 @@ class App extends React.Component {
   //   }));
   // };
 
-  //Fetch API
-  deleteMovie = async (movie) => {
-    const deleteData = `http://localhost:3002/movies/${movie.id}`;
-    await fetch(deleteData, {
-      method: "DELETE",
-    });
-    const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
-    this.setState((state) => ({
-      movies: newMovieList,
-    }));
-  };
+ // DELETE MOVIE
+ deleteMovie = async (movie) => {
 
-  searchMovie = (event) => {
-    this.setState({ searchQuery: event.target.value });
-  };
+  axios.delete(`http://localhost:3002/movies/${movie.id}`)
+  const newMovieList = this.state.movies.filter(
+      m => m.id !== movie.id
+  );
+  this.setState(state => ({
+      movies: newMovieList
+  }))
+}
+
+    // SEARCH MOVIE
+    searchMovie = (event) => {
+      this.setState({ searchQuery: event.target.value })
+  }
+
+
+  // ADD MOVIE
+  addMovie = async (movie) => {
+      await axios.post(`http://localhost:3002/movies/`, movie)
+      this.setState(state => ({
+          movies: state.movies.concat([movie])
+      }))
+
+      //this.getMovies();
+  }
+
+
+   
 
   render() {
     let filteredMovies = this.state.movies.filter((movie) => {
@@ -57,7 +76,8 @@ class App extends React.Component {
         </div>
         <MovieList movies={filteredMovies} deleteMovieProp={this.deleteMovie} />
 
-        <AddMovie />
+        <AddMovie 
+        onAddMovie = {(movie) => {this.addMovie(movie)}}/>
       </div>
     );
   }
