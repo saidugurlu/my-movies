@@ -30,13 +30,15 @@ const MovieList = (props) => {
                 >
                   Delete
                 </button>
+{/* 
+
                 <button
                   type="button"
                   onClick={(event) => props.editMovieProp(movie)}
                   className="btn btn-md btn-outline-primary"
                 >
                   Edit
-                </button>
+                </button> */}
 
                 <h2>
                   <span className="badge bg-primary">{movie.rating}</span>
