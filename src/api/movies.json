@@ -27,7 +27,19 @@
       "imageURL": "https://image.tmdb.org/t/p/w600_and_h900_bestv2/4hne3v6jN4MlCnhSkxOW7YspJhr.jpg",
       "overview": "When a mafia accountant is taken hostage on his beat, a police officer – wracked by guilt from a prior stint as a negotiator – must negotiate the standoff, even as his own family is held captive by the mob.",
       "id": 13
+    },
+    {
+      "name": "Jumanji: Welcome to the Jungle ",
+      "imageURL": "https://www.themoviedb.org/t/p/original/pSgXKPU5h6U89ipF7HBYajvYt7j.jpg",
+      "overview": "The tables are turned as four teenagers are sucked into Jumanji's world - pitted against rhinos, black mambas and an endless variety of jungle traps and puzzles. To survive, they'll play as characters from the game.",
+      "id": 14
+    },
+    {
+      "name": "The Dark Knight ",
+      "rating": "8.5",
+      "imageURL": "https://www.themoviedb.org/t/p/original/qJ2tW6WMUDux911r6m7haRef0WH.jpg",
+      "overview": "Batman raises the stakes in his war on crime. With the help of Lt. Jim Gordon and District Attorney Harvey Dent, Batman sets out to dismantle the remaining criminal organizations that plague the streets. The partnership proves to be effective, but they soon find themselves prey to a reign of chaos unleashed by a rising criminal mastermind known to the terrified citizens of Gotham as the Joker.",
+      "id": 15
     }
-   
   ]
 }

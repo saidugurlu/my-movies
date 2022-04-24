@@ -2,8 +2,7 @@ import React from "react";
 import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import AddMovie from "./components/AddMovie";
-import axios from 'axios';
-
+import axios from "axios";
 
 class App extends React.Component {
   state = {
@@ -14,10 +13,10 @@ class App extends React.Component {
 
   async componentDidMount() {
     const response = await axios.get("http://localhost:3002/movies");
-    this.setState({ movies: response.data })
-}
+    this.setState({ movies: response.data });
+  }
 
-/*  getMovies() {
+  /*  getMovies() {
   
 } */
 
@@ -28,45 +27,42 @@ class App extends React.Component {
   //   }));
   // };
 
- // DELETE MOVIE
- deleteMovie = async (movie) => {
+  // DELETE MOVIE
+  deleteMovie = async (movie) => {
+    axios.delete(`http://localhost:3002/movies/${movie.id}`);
+    const newMovieList = this.state.movies.filter((m) => m.id !== movie.id);
+    this.setState((state) => ({
+      movies: newMovieList,
+    }));
+  };
 
-  axios.delete(`http://localhost:3002/movies/${movie.id}`)
-  const newMovieList = this.state.movies.filter(
-      m => m.id !== movie.id
-  );
-  this.setState(state => ({
-      movies: newMovieList
-  }))
-}
-
-    // SEARCH MOVIE
-    searchMovie = (event) => {
-      this.setState({ searchQuery: event.target.value })
-  }
-
+  // SEARCH MOVIE
+  searchMovie = (event) => {
+    this.setState({ searchQuery: event.target.value });
+  };
 
   // ADD MOVIE
   addMovie = async (movie) => {
-      await axios.post(`http://localhost:3002/movies/`, movie)
-      this.setState(state => ({
-          movies: state.movies.concat([movie])
-      }))
+    await axios.post(`http://localhost:3002/movies/`, movie);
+    this.setState((state) => ({
+      movies: state.movies.concat([movie]),
+    }));
 
-      //this.getMovies();
-  }
-
-
-   
+    //this.getMovies();
+  };
 
   render() {
-    let filteredMovies = this.state.movies.filter((movie) => {
-      return (
-        movie.name
-          .toLowerCase()
-          .indexOf(this.state.searchQuery.toLowerCase()) !== -1
-      );
-    });
+    let filteredMovies = this.state.movies
+      .filter((movie) => {
+        return (
+          movie.name
+            .toLowerCase()
+            .indexOf(this.state.searchQuery.toLowerCase()) !== -1
+        );
+      })
+      .sort((a, b) => {
+        return a.id < b.id ? 1 : a.id > b.id ? -1 : 0;
+      });
     return (
       <div className="container">
         <div className="row">
@@ -76,8 +72,11 @@ class App extends React.Component {
         </div>
         <MovieList movies={filteredMovies} deleteMovieProp={this.deleteMovie} />
 
-        <AddMovie 
-        onAddMovie = {(movie) => {this.addMovie(movie)}}/>
+        <AddMovie
+          onAddMovie={(movie) => {
+            this.addMovie(movie);
+          }}
+        />
       </div>
     );
   }
