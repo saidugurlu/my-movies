@@ -20,13 +20,13 @@ class AddMovie extends React.Component {
           />
           <div className="row">
             <div className="mb-3 col-md-10">
-              <label class="col-sm-2 col-form-label" htmlFor="inputName">
+              <label className="col-sm-2 col-form-label" htmlFor="inputName">
                 Name
               </label>
               <input type="text" className="form-control" name="name" />
             </div>
             <div className="mb-3 col-md-2">
-              <label class="col-sm-2 col-form-label" htmlFor="inputRating">
+              <label className="col-sm-2 col-form-label" htmlFor="inputRating">
                 Rating
               </label>
               <input type="text" className="form-control" name="rating" />
@@ -34,7 +34,7 @@ class AddMovie extends React.Component {
           </div>
           <div className="row">
             <div className="mb-3 col-md-12">
-              <label class="col-sm-2 col-form-label" htmlFor="inputImage">
+              <label className="col-sm-2 col-form-label" htmlFor="inputImage">
                 Image URL
               </label>
               <input type="text" className="form-control" name="imageURL" />
@@ -42,7 +42,7 @@ class AddMovie extends React.Component {
           </div>
           <div className="row">
             <div className="mb-3 col-md-12">
-              <label class="col-sm-2 col-form-label" htmlFor="overviewTextarea">
+              <label className="col-sm-2 col-form-label" htmlFor="overviewTextarea">
                 Overview
               </label>
               <textarea

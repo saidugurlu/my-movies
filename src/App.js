@@ -3,6 +3,8 @@ import MovieList from "./components/MovieList";
 import SearchBar from "./components/SearchBar";
 import AddMovie from "./components/AddMovie";
 import axios from "axios";
+//import EditMovie from "./components/EditMovie";
+
 
 class App extends React.Component {
   state = {
@@ -77,6 +79,8 @@ class App extends React.Component {
             this.addMovie(movie);
           }}
         />
+
+       
       </div>
     );
   }
